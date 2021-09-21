@@ -1,0 +1,40 @@
+# <><><><>String_Code<><><><>
+def code():
+    inp = codingin.get(1.0,"end")
+    if str(code_opt_var.get()) == "请选择：":
+        return
+    try:
+        out_code = str(inp).encode(str(code_opt_var.get()))
+    except UnicodeEncodeError:
+        messagebox.showerror(title="错误",message="请检查输入内容以及编码方式")
+        return
+    out_code = repr(out_code).replace(r"\x",'')
+    codingout.delete(1.0,'end')
+    codingout.insert("end",out_code.lstrip('b').strip('\'').strip(r'\n'))
+
+code_var = tk.IntVar()
+code_var.set(1)
+code_opt_var = tk.StringVar()
+
+
+encodies = ["请选择：","ascii","utf-8","gbk","gb2312","gb18030"]
+framein = ttk.Labelframe(string_code,text="输入")
+framein.pack(fill="x")
+frameout = ttk.Labelframe(string_code,text="输出")
+frameout.pack(fill="x")
+
+codingin = tk.Text(framein,width=55,height=8)
+codingin.pack(fill="both")
+codingout = tk.Text(frameout,width=55,height=8)
+codingout.pack(fill="both")
+
+code_tool = tk.Frame(string_code)
+code_tool.pack(side="bottom",fill="both",expand=True)
+
+ttk.Radiobutton(code_tool, text="编码", variable=code_var, value=1).pack(side="left",fill="both")
+ttk.Radiobutton(code_tool, text="解码", variable=code_var, value=2).pack(side="left",fill="both")
+code_option = ttk.OptionMenu(code_tool,code_opt_var,*encodies)
+code_option.pack(side="left",fill="both")
+
+ttk.Button(code_tool,text="转换",command=code).pack(side="left",fill="both")
+#============================
