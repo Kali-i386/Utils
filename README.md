@@ -8,7 +8,7 @@
 +-----------------------------------------------------------------------------------+
 | Util: Please run it with python 3.7+ and package Pillow and tkinter               |
 | Translate: run it with 3.7+ too and make sure you have already connect to internet|
-|            and can connect to http://fanyi.youdao.com.                            |
+|            and can connect to http://fanyi.youdao.com. Images are optional.       |
 +-----------------------------------------------------------------------------------+
 |            By Kali-i386 @ 2021                                                    |
 +-----------------------------------------------------------------------------------+
