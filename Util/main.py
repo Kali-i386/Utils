@@ -16,7 +16,7 @@ top.minsize(460,560)
 note = ttk.Notebook(top)
 note.pack(padx=5, pady=5, fill="both", expand=True)
 
-tk.Label(top,text="开发者：三亚市第四中学 吴征 2021-9-10",relief="ridge",bd=4,height=8,bg="#3498DB").pack(side="bottom",fill="x",expand=False,padx=5,pady=5)
+tk.Label(top,text="Kali-i386 2021-9-10",relief="ridge",bd=4,height=8,bg="#3498DB").pack(side="bottom",fill="x",expand=False,padx=5,pady=5)
 
 encryption = ttk.Frame(note)
 binary = ttk.Frame(note)
@@ -31,8 +31,8 @@ tag4 = note.add(img2base64, text="图片转base64")
 
 
 # <><><><>Encryption<><><><>
-# -------------------修改过的代码块：开始------------------------------------------
-def set_hash(method="md5"):  # 没有点击下拉框选择时，默认选择md5
+
+def set_hash(method="md5"):
     method_dicts = {"请选择(默认md5)：": hashlib.md5, "md5": hashlib.md5, "sha1": hashlib.sha1, "sha224": hashlib.sha224,
                     "sha256": hashlib.sha256, "sha384": hashlib.sha384, "sha512": hashlib.sha512}
     if method in method_dicts:
@@ -41,8 +41,6 @@ def set_hash(method="md5"):  # 没有点击下拉框选择时，默认选择md5
         output_text.delete('0', 'end')
         output_text.insert('end', string=m.hexdigest())
 
-
-# -------------------修改过的代码块：结束------------------------------------------
 
 var = tk.StringVar()
 var.set("请选择：")
@@ -71,17 +69,15 @@ def wrap():
     method = bin_var.get()
     input_method = inp_var.get()
     try:
-        # -------------------修改过的代码块：开始------------------------------------------
-        # 此处可以用字典存储进制，以代替分支结构
+      
         bases = {1: 2, 2: 8, 3: 10, 4: 16}
         string = int(bin_input.get(1.0, 'end').strip(), base=bases[input_method])
-        # -------------------修改过的代码块：结束------------------------------------------
+       
     except ValueError:
         messagebox.showerror(title="错误",
                              message="请检查输入内容。\n二进制转换只能输入0或1\n八进制转换只能输入0到7\n十进制转换只能输入0到9\n十六进制转换只能输入0到9以及abcdef")
         return
 
-    # 此处可以用字典存储进制，以代替分支结构
     if method == 1:
         bin_output.insert("end", bin(string).lstrip("0b"))
     elif method == 2:
@@ -111,19 +107,15 @@ bin_var.set(1)
 inp_var = tk.IntVar()
 inp_var.set(1)
 
-# -------------------修改过的代码块：开始------------------------------------------
 bases = ["", "二进制", "八进制", "十进制", "十六进制"]
 for i in range(1, 5):
     ttk.Radiobutton(radio_bin, text=bases[i], variable=inp_var, value=i).pack(side="left", fill="both")
     ttk.Radiobutton(binary, text=bases[i], variable=bin_var, value=i).grid(row=2, column=i)
 
 
-# -------------------修改过的代码块：结束------------------------------------------
-
 # ======================
 # <><><><>Regex<><><><>
 def execute():
-    # 可尝试修改成更简明的代码。提示：充分利用列表或字典存储关键词，使用for循环代替多个if语句等
     li = ["I", "M", "S", "U", "X"]
     for flag in li:
         exec(f"global {flag}\n{flag} = reg_var{str(li.index(flag) + 1)}.get()")
